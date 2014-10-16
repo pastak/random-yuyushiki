@@ -88,7 +88,7 @@ $(function() {
       });
       var canvas = $('<canvas>').attr({width: cWidth, height: cHeight});
       var ctx = canvas[0].getContext('2d');
-      $.each(function(index, item) {
+      $.each(imgs, function(index, item) {
         ctx.drawImage(item.elm, 0, item.top);
       });
       window.open(canvas[0].toDataURL());
