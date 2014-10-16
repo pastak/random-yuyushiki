@@ -73,5 +73,24 @@ $(function() {
       });
       return false;
     });
+    $('#generate-data-url').click(function() {
+      var canvas = $('<canvas>').attr({width: 265, height: 835});
+      var ctx = canvas[0].getContext('2d');
+      var top = 0;
+      $('#images img').each(function(index, item) {
+        var img = new Image();
+        img.crossOrigin = "Anonymous";
+        img.onload = function() {
+          return function() {
+            ctx.drawImage(img, 0, top);
+            if( top > 600 ){
+              window.open(canvas[0].toDataURL());
+            }
+          };
+        };
+        img.src = item.src;
+        top += 210;
+      });
+    });
   });
 });
