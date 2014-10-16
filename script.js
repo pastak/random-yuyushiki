@@ -86,10 +86,10 @@ $(function() {
         cHeight += item.naturalHeight + 10;
         cWidth = Math.max(cWidth, item.naturalWidth);
       });
-      var canvas = $('<canvas>').attr({width: cWidth, height: cHeight});
+      var canvas = $('<canvas>').attr({width: cWidth + 4, height: cHeight});
       var ctx = canvas[0].getContext('2d');
       $.each(imgs, function(index, item) {
-        ctx.drawImage(item.elm, 0, item.top);
+        ctx.drawImage(item.elm, 2, item.top);
       });
       window.open(canvas[0].toDataURL());
     });
