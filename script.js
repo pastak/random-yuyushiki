@@ -79,12 +79,12 @@ $(function() {
       var cHeight = 0;
       var imgs = [];
       $('#images img').each(function(index, item) {
-        cHeight += item.naturalHeight + 10;
-        cWidth = Math.max(cWidth, item.naturalWidth);
         imgs.push({
           elm: item,
           top: cHeight
         });
+        cHeight += item.naturalHeight + 10;
+        cWidth = Math.max(cWidth, item.naturalWidth);
       });
       var canvas = $('<canvas>').attr({width: cWidth, height: cHeight});
       var ctx = canvas[0].getContext('2d');
