@@ -74,23 +74,24 @@ $(function() {
       return false;
     });
     $('#generate-data-url').click(function() {
-      var canvas = $('<canvas>').attr({width: 265, height: 835});
-      var ctx = canvas[0].getContext('2d');
       var top = 0;
+      var cWidth = 0;
+      var cHeight = 0;
+      var imgs = [];
       $('#images img').each(function(index, item) {
-        var img = new Image();
-        img.crossOrigin = "Anonymous";
-        img.onload = function() {
-          return function() {
-            ctx.drawImage(img, 0, top);
-            if( top > 600 ){
-              window.open(canvas[0].toDataURL());
-            }
-          };
-        };
-        img.src = item.src;
-        top += 210;
+        cHeight += item.naturalHeight + 10;
+        cWidth = Math.max(cWidth, item.naturalWidth);
+        imgs.push({
+          elm: item,
+          top: cHeight
+        });
       });
+      var canvas = $('<canvas>').attr({width: cWidth, height: cHeight});
+      var ctx = canvas[0].getContext('2d');
+      $.each(function(index, item) {
+        ctx.drawImage(item.elm, 0, item.top);
+      });
+      window.open(canvas[0].toDataURL());
     });
   });
 });
