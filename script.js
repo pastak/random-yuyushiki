@@ -99,7 +99,9 @@ $(function() {
         dataType: 'json',
         data: {
           'client_id': '5f9b5db7f68e126f67f80da4c473ae48dea77ff0de3f82f7f94e95163b0f0f7f',
-          'image_url': getDataUrl()
+          'url': getDataUrl(),
+		  title: '今日のゆゆ式がちゃ',
+		  'referer': '#yuyushiki'
         }
       }).done(function(data) {
         window.open(data.get_image_url);
