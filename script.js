@@ -104,7 +104,7 @@ $(function() {
 		  'referer': '#yuyushiki'
         }
       }).done(function(data) {
-        window.open(data.get_image_url);
+        window.open(data.get_image_url,'_blank');
       });
     });
     $('#generate-data-url').click(function() {
