@@ -91,7 +91,7 @@ $(function() {
       $.each(imgs, function(index, item) {
         ctx.drawImage(item.elm, 2, item.top);
       });
-      return canvas[0].getDataURL();
+      return canvas[0].toDataURL();
     }
     $('#open-gyazo').click(function() {
       $.ajax('https://upload.gyazo.com/api/upload/easy_auth',{
