@@ -73,7 +73,7 @@ $(function() {
       });
       return false;
     });
-    $('#generate-data-url').click(function() {
+    function getDataUrl() {
       var top = 0;
       var cWidth = 0;
       var cHeight = 0;
@@ -91,7 +91,22 @@ $(function() {
       $.each(imgs, function(index, item) {
         ctx.drawImage(item.elm, 2, item.top);
       });
-      window.open(canvas[0].toDataURL());
+      return canvas[0].getDataURL();
+    }
+    $('#open-gyazo').click(function() {
+      $.ajax('https://upload.gyazo.com/api/upload/easy_auth',{
+        method: 'POST',
+        dataType: 'json',
+        data: {
+          'client_id': '5f9b5db7f68e126f67f80da4c473ae48dea77ff0de3f82f7f94e95163b0f0f7f',
+          'image_url': getDataUrl()
+        }
+      }).done(function(data) {
+        window.open(data.get_image_url);
+      });
+    });
+    $('#generate-data-url').click(function() {
+      window.open(getDataUrl());
     });
   });
 });
